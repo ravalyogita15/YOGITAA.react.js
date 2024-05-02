@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <img src="" alt="" height="700px"width="100%">
+</body>
+</html>
+<script>
+  let arr=["https://i.pinimg.com/736x/14/4b/bb/144bbbbfc5ff941732c7dd1591dccf83.jpg","https://wallpapers.com/images/featured/baby-animals-wmsvikfmzvhh3aot.jpg ",
+  "https://images3.alphacoders.com/246/246147.jpg"]
+
+  let cuurentindex=0;
+
+setInterval(()=>{
+    cuurentindex=(cuurentindex+1)%arr.length;
+    document.querySelector("img").src=arr[cuurentindex]
+},1000)
+</script>
