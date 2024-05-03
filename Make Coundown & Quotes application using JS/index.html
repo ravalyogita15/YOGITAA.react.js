@@ -2,16 +2,58 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Countdown & Quotes</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="video.txt">
 </head>
+<style>
+  
+   *{
+    background-color: beige;
+    text-align: center;
+    margin-top: 27px;
+   }
+   #image{
+    height: 500px;
+    width: 50%;
+   }
+</style>
 <body>
-    <div class="container">
-        <h1>Countdown & Quotes</h1>
-        <div id="countdown"></div>
-        <div id="quote"></div>
-    </div>
-    <script src="main.js"></script>
+
+    <h1 style="color: black; font-size: 40px;"></h1>
+    <button onClick="start()">Start Timer</button>
+    <button onClick="stop()">Stop Timer</button>
+    <br><br><br>
+    <img  id="image"  src="" alt="" height="500px">
 </body>
 </html>
+
+<script>
+    let i = 0;
+    let id  //id =variable
+    function start() {
+       id = setInterval(function () {
+        i++;
+        console.log(i);
+        document.querySelector("h1").innerText = i;
+      }, 1000);
+    }
+  
+    function stop() {
+      clearInterval(id);
+     
+    }
+
+    let currentindex =0;
+
+    let images=["https://i.pinimg.com/736x/df/c5/b4/dfc5b4d086b49e1a8d802a89856683ee.jpg",
+    "https://i.pinimg.com/236x/ac/a2/2a/aca22a6dbe33c708716c7b137045bb58.jpg",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFqkoEnQmKvWezeCmgVpY3_TZgNnmHcZ7kNThJEl8Qy64tp9vZNSCv6Qf16v2H9PLS5kY&usqp=CAU","https://i.pinimg.com/736x/dc/cf/19/dccf196ab2d64fc41f519432127db590.jpg"]
+
+    setInterval(function(){
+        currentindex=(currentindex+1)% images.length;
+        document.getElementById("image").src=images[currentindex]
+    },2000);
+  </script>
