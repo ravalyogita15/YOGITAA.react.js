@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="v.txt">
+    <style>
+    #container
+        {
+           display: grid;
+           grid-template-columns: repeat(3,1fr);
+           grid-gap: 5px;
+           padding-top: 2%;
+        }
+        .box{
+            border: 1px solid black;
+            padding: 3% 25px;
+            background-image: url('https://static.vecteezy.com/system/resources/previews/007/385/576/original/kill-coronavirus-in-light-of-hope-background-for-copy-space-covid-19-free-vector.jpg');
+            background-position: center;
+            background-size: cover;
+
+        }
+        .box:hover
+        {
+            transform: scale(0.9);
+          transition: 0.5s ease-in-out;
+        }
+        .text
+        {
+         text-align: center;
+         color: red;
+         margin-top: 5%;
+        }
+        .box h2
+        {
+          color: red;
+            
+        }
+        .box h3
+        {
+
+          
+            color: black;
+            font-weight: 200;
+            font-size: 20px;
+            
+        }
+
+        </style>
+</head>
+<body>
+    <h1 class="text">Corona Api</h1>
+    <div id="container"></div>
+    <div class="div">
+    
+  
+</body>
+</html>
+<script>
+    function Fetchdata(){
+    fetch("https://api.rootnet.in/covid19-in/stats/latest")
+    .then((res)=>res.json())
+    .then((data)=>CardList(data.data.regional))
+    .catch((err)=>console.log(err))
+    }
+    Fetchdata()
+
+    function CardList(data)
+    {
+       let store=data.map((el)=>SingleCarad( el.loc,el.confirmedCasesIndian,el.confirmedCasesForeign,el.discharged, el.deaths,el.totalConfirmed))
+        document.getElementById("container").innerHTML=store.join('');
+    }
+
+    function SingleCarad(loc, confirmedCasesIndian ,confirmedCasesForeign, discharged, deaths ,totalConfirmed){
+     
+    let Card=`
+    <div class="box">
+       <h2>location :${loc}</h2>
+       <h3>confirmedCasesIndian: ${confirmedCasesIndian}</h3>
+       <h3>confirmedCasesForeign: ${confirmedCasesForeign}</h3>
+       <h3>Discharged": ${discharged}</h3>
+       <h3>Deaths: ${deaths}</h3>
+       <h3>totalConfirmed: ${totalConfirmed}</h3>
+    </div>  
+    `
+      return Card
+    }
+    
+    </script>
