@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body
+        {
+            background-color:black;
+        }
+      #container
+        {
+            grid-template-columns: repeat(2,1fr);
+            display: grid;
+        }
+        h3
+        {
+            color: black;
+        }
+        .box
+        {
+           margin: auto;
+           width: 50%;
+            border: 5px double black;
+            padding: 20px 30px;
+            margin: 10px auto;
+            background-color: gray;
+        }
+        .box:hover
+        {
+            background-color:white;
+        }
+        img
+        {
+            width: 50%  ;
+        }
+        .text
+         {
+            align-items: center;
+            text-align: center;
+            color: gray;
+            justify-content: center;
+        }
+       
+
+    </style>
+</head>
+<body>
+    <h1 class="text">WEATHER API</h1>
+   <div id="container"></div>
+    
+</body>
+    <script>
+        function Fetchdata(){
+            fetch("https://reqres.in/api/users?page=2")   
+                .then((res) => res.json())
+                .then((data) => cardlist(data))
+                .catch((err) => console.log(err))0
+    
+        }
+        Fetchdata()
+    
+        function cardlist(data){
+            const store=data.data.map((el)=>singlecard(el.id,el.email,el.first_name,el.last_name,el.avatar))
+            document.getElementById("container").innerHTML=store.join('');
+    
+        }
+        
+        function singlecard(id,email,first_name,last_name,avatar){
+           let card=`
+           <div class="box">
+            <h2>id : ${id} </h2>
+            <h3>email:${email}</h3>
+            <h3>first_name:${first_name}</h3>
+            <h3>last_name":${last_name}</h3>
+            <img src="${avatar}" alt="Avatar">
+            </div>   
+           `
+           return card
+        }
+    
+    </script>
+</html>
